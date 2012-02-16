@@ -1,0 +1,27 @@
+Author: Andrew Crites
+Webzone: http://explosion-pills.com
+Contact: explosion-pills@aysites.com
+
+`implode` is a shell utility that joins input delimited by the specified separator (or IFS) on the specified delimiter.
+
+Example:
+
+    $ ls | implode
+    manREADMEsrc
+
+It is more or less a shortcut for
+    $ tr '$IFS' '$delim' | sed -i "s/$delim$//"
+
+However, `implode` allows you to specify the separator and the delimeter, and each can be multiple characters.
+
+    $ ls | implode -sDM -d,, -e
+    man
+    REA,,E
+    src
+
+This works like other shell utilities in that it will try to implode the file provided, or otherwise use stdin.
+This allows `implode` to be used with pipes.
+
+Usage: implode [-h] [-d <delimiter>] [-s <separator>] [file]...
+
+See `man implode`
